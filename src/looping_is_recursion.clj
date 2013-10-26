@@ -51,14 +51,27 @@
 ;(find-first-index nil? [])                                    ;=> nil
 
 (defn avg [a-seq]
-  -1)
+  (loop [sum 0
+         i 0
+         s a-seq]
+    (cond
+     (empty? s) (/ sum i)
+     :else (recur (+ sum (first s)) (inc i) (rest s)))))
 
 ;(avg [1 2 3])   ;=> 2
 ;(avg [0 0 0 4]) ;=> 1
 ;(avg [1 0 0 1]) ;=> 1/2 ;; or 0.5
 
 (defn parity [a-seq]
-  ":(")
+  ;(loop [s a-seq]
+    ;(cond
+     ;(empty? s) s
+     ;:else (recur (rest s))))
+  )
+
+;(parity [:a :b :c])           ;=> #{:a :b :c}
+;(parity [:a :b :c :a])        ;=> #{:b :c}
+;(parity [1 1 2 1 2 3 1 2 3 4] ;=> #{2 4}
 
 (defn fast-fibo [n]
   ":(")
