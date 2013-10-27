@@ -74,7 +74,24 @@
 ;(parity [1 1 2 1 2 3 1 2 3 4] ;=> #{2 4}
 
 (defn fast-fibo [n]
-  ":(")
+  (loop [
+         cur 1
+         nmin1 1
+         i 2
+        ]
+    (cond
+     (zero? n) 0
+     (== 1 n) 1
+     (== i n) cur
+     :else (recur (+ cur nmin1) cur (inc i)))))
+
+;(fast-fibo 0) ;=> 0
+;(fast-fibo 1) ;=> 1
+;(fast-fibo 2) ;=> 1
+;(fast-fibo 3) ;=> 2
+;(fast-fibo 4) ;=> 3
+;(fast-fibo 5) ;=> 5
+;(fast-fibo 6) ;=> 8
 
 (defn cut-at-repetition [a-seq]
   [":("])
