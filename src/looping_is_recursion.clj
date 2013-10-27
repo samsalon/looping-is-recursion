@@ -62,16 +62,21 @@
 ;(avg [0 0 0 4]) ;=> 1
 ;(avg [1 0 0 1]) ;=> 1/2 ;; or 0.5
 
+(defn toggle [a-set elem]
+ (if (contains? a-set elem)
+  (disj a-set elem)
+  (conj a-set elem)))
+
 (defn parity [a-seq]
-  ;(loop [s a-seq]
-    ;(cond
-     ;(empty? s) s
-     ;:else (recur (rest s))))
-  )
+  (loop [s a-seq
+         result #{}]
+    (cond
+     (empty? s) result
+     :else (recur (rest s) (toggle result (first s))))))
 
 ;(parity [:a :b :c])           ;=> #{:a :b :c}
 ;(parity [:a :b :c :a])        ;=> #{:b :c}
-;(parity [1 1 2 1 2 3 1 2 3 4] ;=> #{2 4}
+;(parity [1 1 2 1 2 3 1 2 3 4]) ;=> #{2 4}
 
 (defn fast-fibo [n]
   (loop [
